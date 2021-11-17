@@ -26,17 +26,16 @@ while continue_exercise == 1:
         print(answer_shuffle[i])
         answer_user = ''
         
-        answer_user = int(input('Informe a posição na frase: '))
+        is_correct = False
         #Enquanto a resposta do usuário for diferente da palavra em questão, rodará o código
-        try:    
-            print(answer_correct[answer_user])
-            if answer_shuffle[i] == answer_correct[answer_user-1]:
-                print('Acertou')
-        except ValueError:
-            print('Não entendi o que você quis dizer... Tente novamente')
-        except IndexError:
-            print('Por favor informe um valor de 1 a 3')
+        while is_correct == False:
+            answer_user = int(input('Informe a posição na frase: '))
+            try:    
+                if answer_shuffle[i] == answer_correct[answer_user-1]:
+                    print('Acertou')
+                    is_correct = True
+            except IndexError:
+                print('Por favor informe um valor de 1 a 3')
 
-    
     #Permite o usuário encerrar quando estiver satisfeito
     continue_exercise = int(input('Deseja continuar?\nDigite 1 para continuar\nDigite 2 para parar\nResponda aqui: '))
