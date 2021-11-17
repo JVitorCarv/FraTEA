@@ -29,7 +29,15 @@ while continue_exercise == 1:
         is_correct = False
         #Enquanto a resposta do usuário for diferente da palavra em questão, rodará o código
         while is_correct == False:
-            answer_user = int(input('Informe a posição na frase: '))
+            is_valid = False
+            while is_valid == False:
+                try:
+                    answer_user = int(input('Informe a posição na frase: '))
+                    is_valid = True
+                except ValueError:
+                    print('Não entendi o que você digitou')
+                except TypeError:
+                    print('Não entendi o que você digitou')
             try:    
                 if answer_shuffle[i] == answer_correct[answer_user-1]:
                     print('Acertou')
