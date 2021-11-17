@@ -42,6 +42,8 @@ while continue_exercise == 1:
                 if answer_shuffle[i] == answer_correct[answer_user-1]:
                     print('Acertou')
                     is_correct = True
+                else:
+                    print('Essa não é a resposta certa... Tente novamente')
             except IndexError:
                 print('Por favor informe um valor de 1 a 3')
 
