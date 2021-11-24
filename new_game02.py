@@ -1,10 +1,13 @@
 import random
+import time
 
-subjects = {'subjects01':'CARLOS', 'subjects02':'MATHEUS', 'subjects03':'ANA'}
-verbs = {'verbs01':'COMEU', 'verbs02':'AMA', 'verbs03':'COMPROU'}
-objects = {'objects01':'MAÇÃ', 'objects02':'PIZZA', 'objects03':'FEIJÃO'}
+subjects = ['CARLOS', 'MATHEUS', 'MARIA']
+verbs = ['COMEU', 'ADORA', 'COMPROU']
+objects = ['MAÇÃ', 'PIZZA', 'FEIJÃO']
 
-dictionaries = [subjects, verbs, objects]
+lists = [subjects, verbs, objects]
+
+listsCampos=[]
 
 #Faz o código rodar o quanto o usuário quiser
 continue_exercise = 1
@@ -12,25 +15,52 @@ while continue_exercise == 1:
     #Gera a frase correta
     answer_correct = []
     for i in range(0, 3):
-        answer_correct.append(f'{dictionaries[i][random.choice(list(dictionaries[i]))]}')
+        answer_correct.append(f'{random.choice(lists[i])}')
 
-    print(answer_correct)
+    print(f"\n======FRASE======\n|   {answer_correct[0]}\t|\n|   {answer_correct[1]}\t|\n|   {answer_correct[2]}\t|\n=================")
+    print(f"\t\  /\n\t \/\t\t")
+    print(f"===CORRELAÇÃO====\n| SUJEITO  - 1\t|\n| VERBO\t   - 2\t|\n| OBJETO   - 3\t|\n=================")
+
+    
+    answer_shuffle = []
+    for word in answer_correct:
+        answer_shuffle.append(word)
+    random.shuffle(answer_shuffle)
 
     #Recebe os inputs do usuário e os valida
     for i in range(0, 3):
+        print(f"Agora é a vez da palavra: {answer_shuffle[i]}")
         answer_user = ''
         
+        is_correct = False
         #Enquanto a resposta do usuário for diferente da palavra em questão, rodará o código
-        while answer_user != answer_correct[i]:
-            answer_user = input('Insira a senha da imagem: ')
-            
-            #Foi utilizado o try porque tentar achar uma chave inexistente ocasiona KeyError
-            try:
-                if dictionaries[i][answer_user] == answer_correct[i]:
-                    answer_user = answer_correct[i]
-                    print('Você acertou!')
-            except KeyError:
-                print('Não entendi o que você digitou, tente novamente')
-    
+        while is_correct == False:
+            is_valid = False
+            while is_valid == False:
+                try:
+                    answer_user = int(input('\tInforme a posição na frase: '))
+                    is_valid = True
+                except ValueError:
+                    print('Não entendi o que você digitou')
+                except TypeError:
+                    print('Não entendi o que você digitou')
+            try:    
+                if answer_shuffle[i] == answer_correct[answer_user-1]:
+                    if answer_user == 1:
+                        campo = "sujeito"
+                    elif answer_user == 2:
+                        campo = "verbo"
+                    elif answer_user == 3:
+                        campo = "objeto"
+                    print('Parabens!! Você acertou!')
+                    print(f'\tA palavra {answer_shuffle[i]} é o {campo.upper()}({answer_user}) desta frase! \n')                    
+                    is_correct = True
+                else:
+                    print('Essa não é a resposta certa... Tente novamente')
+            except IndexError:
+                print('Por favor informe um valor de 1 a 3')
+
     #Permite o usuário encerrar quando estiver satisfeito
-    continue_exercise = int(input('Deseja continuar?\nDigite 1 para continuar\nDigite 2 para parar\nResponda aqui: '))
+    print('Parabéns! Você acertou todos os elementos da frase!!\n')
+    time.sleep(0.5) 
+    continue_exercise = int(input('Deseja continuar?\n\tDigite 1 para continuar\n\tDigite 2 para parar\nResponda aqui: '))
