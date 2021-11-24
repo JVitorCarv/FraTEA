@@ -10,8 +10,8 @@ lists = [subjects, verbs, objects]
 listsCampos=[]
 
 #Faz o código rodar o quanto o usuário quiser
-continue_exercise = 1
-while continue_exercise == 1:
+continue_exercise = '1'
+while continue_exercise != '2':
     #Gera a frase correta
     answer_correct = []
     for i in range(0, 3):
@@ -61,5 +61,15 @@ while continue_exercise == 1:
 
     #Permite o usuário encerrar quando estiver satisfeito
     print('Parabéns! Você acertou todos os elementos da frase!!\n')
-    time.sleep(0.5) 
-    continue_exercise = int(input('Deseja continuar?\n\tDigite 1 para continuar\n\tDigite 2 para parar\nResponda aqui: '))
+    time.sleep(0.5)
+    
+    #O valor de continue_exercise é resettado para poder dar escolha ao usuário
+    continue_exercise = '3'
+    while continue_exercise != '1' and continue_exercise != '2':
+        continue_exercise = input('Deseja continuar?\n\tDigite 1 para continuar\n\tDigite 2 para parar\nResponda aqui: ')
+        if continue_exercise == '1':
+            print('Vamos continuar!\n')
+        elif continue_exercise == '2':
+            print('\nMuito obrigado por brincar com a gente!\nAté mais!')
+        else:
+            print('Não entendi o que você digitou...\nTente novamente\n')
