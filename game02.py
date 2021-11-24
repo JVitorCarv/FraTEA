@@ -17,7 +17,7 @@ while answer_user != 'SAIR':
     #Se uma dessas condições não for satisfeita, o loop é quebrado
     while answer_user != answer_correct and answer_user != 'SAIR':
         print(picture)
-        answer_user = str(input('O que é isso? '))
+        answer_user = str(input('Escreva o objeto representado ou "SAIR" para terminar\n\nO que é isso? '))
         answer_user = answer_user.upper() #a frase também muda para evitar case sensitivity
 
         #Dá um feedback de acordo com a resposta
